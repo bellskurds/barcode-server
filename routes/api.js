@@ -165,7 +165,7 @@ module.exports = app => {
     })
   })
   app.post('/api/get_scaneddata', (req, res) => {
-    let sql = "SELECT * FROM amount_transaction";
+    let sql = "SELECT * FROM amount_transaction ORDER BY date_added DESC";
     config.mysql.query(sql, async (err, result) => {
       if (err) throw err;
       if (result) {
@@ -182,7 +182,7 @@ module.exports = app => {
         if (err) throw err;
       })
     })
-    config.mysql.query("select * from amount_transaction", async (err, result) => {
+    config.mysql.query("select * from amount_transaction ORDER BY date_added DESC", async (err, result) => {
       if (err) throw err;
       if (result) {
         res.send(result);
